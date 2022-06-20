@@ -9,10 +9,10 @@ public class TS_SQLUploadUtils {
         return new TS_SQLUpload(anchor, tableName);
     }
 
-    public static void test() {
-        TS_SQLUploadUtils
-                .upload(null, "tn")
-                .setFile("colName", new File("").toPath())
-                .whereConditionAnd(conditions -> conditions.lngEq("", 0));
-    }
+//    public static void test() {
+//        TS_SQLUploadUtils
+//                .upload(null, "tn")
+//                .setFile("colName", new File("").toPath())
+//                .whereConditionAnd(conditions -> conditions.lngEq("", 0));
+//    }
 }
