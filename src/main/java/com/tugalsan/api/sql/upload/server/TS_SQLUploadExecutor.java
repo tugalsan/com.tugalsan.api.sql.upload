@@ -8,6 +8,7 @@ import com.tugalsan.api.sql.conn.server.*;
 import com.tugalsan.api.sql.sanitize.server.*;
 import com.tugalsan.api.sql.update.server.*;
 import com.tugalsan.api.sql.where.server.*;
+import com.tugalsan.api.unsafe.client.*;
 
 public class TS_SQLUploadExecutor {
 
@@ -40,16 +41,17 @@ public class TS_SQLUploadExecutor {
     }
 
     private int set_fill(PreparedStatement stmt, int offset) {
-        try ( var is = set.value1) {
-            if (set.value2 == null || set.value2 == 0L) {
-                stmt.setBinaryStream(offset++, is);
-            } else {
-                stmt.setBinaryStream(offset++, is, set.value2);
+        return TGS_UnSafe.compile(() -> {
+            var newOffset = offset;
+            try ( var is = set.value1) {
+                if (set.value2 == null || set.value2 == 0L) {
+                    stmt.setBinaryStream(newOffset++, is);
+                } else {
+                    stmt.setBinaryStream(newOffset++, is, set.value2);
+                }
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return offset;
+            return newOffset;
+        });
     }
 
     public int execute() {

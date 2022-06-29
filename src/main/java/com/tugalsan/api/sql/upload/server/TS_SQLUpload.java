@@ -3,6 +3,7 @@ package com.tugalsan.api.sql.upload.server;
 import java.io.*;
 import java.nio.file.*;
 import com.tugalsan.api.sql.conn.server.*;
+import com.tugalsan.api.unsafe.client.*;
 
 public class TS_SQLUpload {
 
@@ -12,11 +13,7 @@ public class TS_SQLUpload {
     private TS_SQLUploadExecutor executor;
 
     public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
-        try {
-            return setInputStream(columnName, Files.newInputStream(file), Files.size(file));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        return TGS_UnSafe.compile(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is) {
