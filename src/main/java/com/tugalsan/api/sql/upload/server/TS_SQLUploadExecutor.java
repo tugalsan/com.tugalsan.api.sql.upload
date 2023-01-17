@@ -54,7 +54,7 @@ public class TS_SQLUploadExecutor {
         });
     }
 
-    public int execute() {
+    public TS_SQLConnStmtUpdateResult execute() {
         return TS_SQLUpdateStmtUtils.update(anchor, toString(), fillStmt -> {
             var idx = set_fill(fillStmt, 0);
             where.fill(fillStmt, idx);
