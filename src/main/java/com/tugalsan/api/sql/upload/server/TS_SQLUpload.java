@@ -13,7 +13,7 @@ public class TS_SQLUpload {
     private TS_SQLUploadExecutor executor;
 
     public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
-        return TGS_UnSafe.compile(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
+        return TGS_UnSafe.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is) {

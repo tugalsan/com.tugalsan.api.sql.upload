@@ -41,7 +41,7 @@ public class TS_SQLUploadExecutor {
     }
 
     private int set_fill(PreparedStatement stmt, int offset) {
-        return TGS_UnSafe.compile(() -> {
+        return TGS_UnSafe.call(() -> {
             var newOffset = offset;
             try ( var is = set.value1) {
                 if (set.value2 == null || set.value2 == 0L) {
@@ -54,7 +54,7 @@ public class TS_SQLUploadExecutor {
         });
     }
 
-    public TS_SQLConnStmtUpdateResult execute() {
+    public TS_SQLConnStmtUpdateResult run() {
         return TS_SQLUpdateStmtUtils.update(anchor, toString(), fillStmt -> {
             var idx = set_fill(fillStmt, 0);
             where.fill(fillStmt, idx);
