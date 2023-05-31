@@ -2,7 +2,7 @@ package com.tugalsan.api.sql.upload.server;
 
 import java.io.*;
 import java.sql.*;
-import com.tugalsan.api.pack.client.*;
+import com.tugalsan.api.tuple.client.*;
 import com.tugalsan.api.sql.order.server.*;
 import com.tugalsan.api.sql.conn.server.*;
 import com.tugalsan.api.sql.sanitize.server.*;
@@ -19,7 +19,7 @@ public class TS_SQLUploadExecutor {
     final public TS_SQLConnAnchor anchor;
     final public CharSequence tableName;
 
-    public TGS_Pack3<String, InputStream, Long> set = new TGS_Pack3();
+    public TGS_Tuple3<String, InputStream, Long> set = new TGS_Tuple3();
     public TS_SQLWhere where = null;
     public TS_SQLOrder order = null;
 
