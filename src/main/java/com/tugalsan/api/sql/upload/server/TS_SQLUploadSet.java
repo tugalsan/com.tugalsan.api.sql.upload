@@ -9,7 +9,7 @@ public class TS_SQLUploadSet {
     public TS_SQLUploadSet(TS_SQLUploadExecutor executor) {
         this.executor = executor;
     }
-    private TS_SQLUploadExecutor executor;
+    private final TS_SQLUploadExecutor executor;
 
     public TS_SQLConnStmtUpdateResult whereGroupAnd(TGS_RunnableType1<TS_SQLWhereGroups> groups) {
         executor.where = TS_SQLWhereUtils.where();

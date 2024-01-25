@@ -10,7 +10,7 @@ public class TS_SQLUpload {
     public TS_SQLUpload(TS_SQLConnAnchor anchor, CharSequence tableName) {
         executor = new TS_SQLUploadExecutor(anchor, tableName);
     }
-    private TS_SQLUploadExecutor executor;
+    private final TS_SQLUploadExecutor executor;
 
     public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
         return TGS_UnSafe.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));

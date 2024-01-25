@@ -1,7 +1,6 @@
 package com.tugalsan.api.sql.upload.server;
 
 import com.tugalsan.api.sql.conn.server.TS_SQLConnAnchor;
-import java.io.File;
 
 public class TS_SQLUploadUtils {
 
