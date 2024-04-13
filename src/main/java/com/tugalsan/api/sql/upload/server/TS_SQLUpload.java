@@ -3,7 +3,7 @@ package com.tugalsan.api.sql.upload.server;
 import java.io.*;
 import java.nio.file.*;
 import com.tugalsan.api.sql.conn.server.*;
-import com.tugalsan.api.unsafe.client.*;
+import com.tugalsan.api.union.client.TGS_UnionExcuse;
 
 public class TS_SQLUpload {
 
@@ -12,8 +12,12 @@ public class TS_SQLUpload {
     }
     private final TS_SQLUploadExecutor executor;
 
-    public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
-        return TGS_UnSafe.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
+    public TGS_UnionExcuse<TS_SQLUploadSet> setFile(CharSequence columnName, Path file) {
+        try {
+            return TGS_UnionExcuse.of(setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
+        } catch (IOException ex) {
+            return TGS_UnionExcuse.ofExcuse(ex);
+        }
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is) {
@@ -21,9 +25,7 @@ public class TS_SQLUpload {
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is, long size) {
-        executor.set.value0 = columnName.toString();
-        executor.set.value1 = is;
-        executor.set.value2 = size;
+        executor.set = new TS_SQLUploadConfig(columnName.toString(), is, size);
         return new TS_SQLUploadSet(executor);
     }
 }
