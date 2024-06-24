@@ -2,7 +2,7 @@ module com.tugalsan.api.sql.upload {
     requires java.sql;
     requires com.tugalsan.api.tuple;
     requires com.tugalsan.api.unsafe;
-    requires com.tugalsan.api.runnable;
+    requires com.tugalsan.api.callable;
     requires com.tugalsan.api.sql.sanitize;
     requires com.tugalsan.api.sql.update;
     requires com.tugalsan.api.sql.where;
