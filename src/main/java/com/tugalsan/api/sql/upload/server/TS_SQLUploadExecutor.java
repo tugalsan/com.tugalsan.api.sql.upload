@@ -43,7 +43,7 @@ public class TS_SQLUploadExecutor {
     private int set_fill(PreparedStatement stmt, int offset) {
         return TGS_UnSafe.call(() -> {
             var newOffset = offset;
-            try ( var is = set.value1) {
+            try (var is = set.value1) {
                 if (set.value2 == null || set.value2 == 0L) {
                     stmt.setBinaryStream(newOffset++, is);
                 } else {
@@ -55,9 +55,13 @@ public class TS_SQLUploadExecutor {
     }
 
     public TS_SQLConnStmtUpdateResult run() {
-        return TS_SQLUpdateStmtUtils.update(anchor, toString(), fillStmt -> {
-            var idx = set_fill(fillStmt, 0);
-            where.fill(fillStmt, idx);
+        return TGS_UnSafe.call(() -> {
+            try (var is = set.value1) {
+                return TS_SQLUpdateStmtUtils.update(anchor, toString(), fillStmt -> {
+                    var idx = set_fill(fillStmt, 0);
+                    where.fill(fillStmt, idx);
+                });
+            }
         });
     }
 }
