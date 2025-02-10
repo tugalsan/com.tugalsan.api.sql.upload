@@ -1,9 +1,10 @@
 package com.tugalsan.api.sql.upload.server;
 
+import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
 import java.io.*;
 import java.nio.file.*;
 import com.tugalsan.api.sql.conn.server.*;
-import com.tugalsan.api.unsafe.client.*;
+
 
 public class TS_SQLUpload {
 
@@ -13,7 +14,7 @@ public class TS_SQLUpload {
     private final TS_SQLUploadExecutor executor;
 
     public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
-        return TGS_UnSafe.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
+        return TGS_FuncMTCEUtils.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is) {

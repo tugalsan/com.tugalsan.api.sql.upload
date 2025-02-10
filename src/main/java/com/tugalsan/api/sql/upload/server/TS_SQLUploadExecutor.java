@@ -1,5 +1,6 @@
 package com.tugalsan.api.sql.upload.server;
 
+import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
 import java.io.*;
 import java.sql.*;
 import com.tugalsan.api.tuple.client.*;
@@ -8,7 +9,7 @@ import com.tugalsan.api.sql.conn.server.*;
 import com.tugalsan.api.sql.sanitize.server.*;
 import com.tugalsan.api.sql.update.server.*;
 import com.tugalsan.api.sql.where.server.*;
-import com.tugalsan.api.unsafe.client.*;
+
 
 public class TS_SQLUploadExecutor {
 
@@ -41,7 +42,7 @@ public class TS_SQLUploadExecutor {
     }
 
     private int set_fill(PreparedStatement stmt, int offset) {
-        return TGS_UnSafe.call(() -> {
+        return TGS_FuncMTCEUtils.call(() -> {
             var newOffset = offset;
             try (var is = set.value1) {
                 if (set.value2 == null || set.value2 == 0L) {
@@ -55,7 +56,7 @@ public class TS_SQLUploadExecutor {
     }
 
     public TS_SQLConnStmtUpdateResult run() {
-        return TGS_UnSafe.call(() -> {
+        return TGS_FuncMTCEUtils.call(() -> {
             try (var is = set.value1) {
                 return TS_SQLUpdateStmtUtils.update(anchor, toString(), fillStmt -> {
                     var idx = set_fill(fillStmt, 0);
