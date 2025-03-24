@@ -1,6 +1,6 @@
 package com.tugalsan.api.sql.upload.server;
 
-import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
+import com.tugalsan.api.function.client.maythrowexceptions.checked.TGS_FuncMTCUtils;
 import java.io.*;
 import java.nio.file.*;
 import com.tugalsan.api.sql.conn.server.*;
@@ -14,7 +14,7 @@ public class TS_SQLUpload {
     private final TS_SQLUploadExecutor executor;
 
     public TS_SQLUploadSet setFile(CharSequence columnName, Path file) {
-        return TGS_FuncMTCEUtils.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
+        return TGS_FuncMTCUtils.call(() -> setInputStream(columnName, Files.newInputStream(file), Files.size(file)));
     }
 
     public TS_SQLUploadSet setInputStream(CharSequence columnName, InputStream is) {
