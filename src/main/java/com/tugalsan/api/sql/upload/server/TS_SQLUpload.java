@@ -1,10 +1,9 @@
 package com.tugalsan.api.sql.upload.server;
 
-import com.tugalsan.api.function.client.maythrowexceptions.checked.TGS_FuncMTCUtils;
+import module com.tugalsan.api.function;
+import module com.tugalsan.api.sql.conn;
 import java.io.*;
 import java.nio.file.*;
-import com.tugalsan.api.sql.conn.server.*;
-
 
 public class TS_SQLUpload {
 

@@ -1,15 +1,14 @@
 package com.tugalsan.api.sql.upload.server;
 
-import com.tugalsan.api.function.client.maythrowexceptions.checked.TGS_FuncMTCUtils;
+import module com.tugalsan.api.tuple;
+import module com.tugalsan.api.sql.order;
+import module com.tugalsan.api.sql.conn;
+import module com.tugalsan.api.sql.sanitize;
+import module com.tugalsan.api.sql.update;
+import module com.tugalsan.api.sql.where;
+import module com.tugalsan.api.function;
+import module java.sql;
 import java.io.*;
-import java.sql.*;
-import com.tugalsan.api.tuple.client.*;
-import com.tugalsan.api.sql.order.server.*;
-import com.tugalsan.api.sql.conn.server.*;
-import com.tugalsan.api.sql.sanitize.server.*;
-import com.tugalsan.api.sql.update.server.*;
-import com.tugalsan.api.sql.where.server.*;
-
 
 public class TS_SQLUploadExecutor {
 
